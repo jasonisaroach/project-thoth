@@ -4,10 +4,11 @@ const {BrowserWindow} = electron;
 const {dialog} = electron;
 const fs = require('fs');
 const Menu = electron.Menu;
+var chalk = require('chalk');
 var mainWindow = null;
 
 app.on('ready', function() {
-  console.log('Fabricator Initialized');
+  console.log(chalk.cyan('Fabricator Initialized'));
   mainWindow = new BrowserWindow({
     'minWidth': 800
   });
@@ -34,6 +35,7 @@ const openFile = function () {
   app.addRecentDocument(file);
   mainWindow.webContents.send('file-opened', file, content);
 };
+
 const saveFile = function (content) {
   var fileName = dialog.showSaveDialog(mainWindow, {
     title: 'Save HTML Output',
@@ -45,8 +47,11 @@ const saveFile = function (content) {
   if (!fileName) { return; }
   fs.writeFileSync(fileName, content);
 };
+
 exports.openFile = openFile;
+
 exports.saveFile = saveFile;
+
 const template = [
   {
     label: 'File',
@@ -96,6 +101,7 @@ const template = [
     ]
   }
 ];
+
 if (process.platform == 'darwin') {
   var name = app.getName();
   template.unshift({
@@ -133,6 +139,7 @@ if (process.platform == 'darwin') {
     ]
   });
 }
+
 app.on('open-file', function (event, file) {
   var content = fs.readFileSync(file).toString();
   mainWindow.webContents.send('file-opened', file, content);

@@ -1,7 +1,7 @@
 {
-  "name": "temp",
-  "version": "0.2.0",
-  "description": "null",
+  "name": "markdown-transmogrifier",
+  "version": "0.1.0",
+  "description": "A simple markdown transmogrification interface.",
   "main": "js/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,8 +9,10 @@
   "author": "Adrian Roach",
   "license": "MIT",
   "dependencies": {
+    "chalk": "^1.1.3",
     "jquery": "^3.2.1",
     "marker": "^0.1.2",
-    "monaco-editor": "^0.8.3"
+    "monaco-editor": "^0.8.3",
+    "react-monaco-editor": "^0.8.1"
   }
 }
