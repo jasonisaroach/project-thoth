@@ -1,8 +1,8 @@
 {
   "name": "temp",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "null",
-  "main": "lib/main.js",
+  "main": "js/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "jquery": "^3.2.1",
-    "marker": "^0.1.2"
+    "marker": "^0.1.2",
+    "monaco-editor": "^0.8.3"
   }
 }

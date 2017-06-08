@@ -1,0 +1,110 @@
+.row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100vh;
+}
+
+.column {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 auto;
+  -ms-flex: 0 auto;
+  flex: 0 auto;
+  background-color: #333;
+}
+
+.section {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.section-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100vh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.column-2 {
+  height: 100vh;
+}
+
+.fullheight {
+  height: 100vh;
+  color: #ccc;
+  padding-right: 6px;
+  padding-left: 6px;
+  background-color: #1e1e1e;
+  border-left: 1px solid #333;
+}
+
+.fullheight.test {
+  height: 100px;
+  min-height: 100vh;
+  margin-right: 0px;
+  border: 0px solid #000;
+  background-color: #1e1e1e;
+}
+
+.btn {
+  margin-top: 9px;
+  margin-bottom: 9px;
+  padding-bottom: 0px;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 auto;
+  -ms-flex: 0 auto;
+  flex: 0 auto;
+  background: transparent;
+  opacity: 0.7;
+  font-size: 11px;
+  line-height: 13px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.btn:hover {
+  opacity: 1;
+}
+
+.btn-img {
+  height: 24px;
+  opacity: 1;
+}
+
+.column-3 {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: #4379bd;
+}
+
+.render-scroll {
+  overflow-y: scroll;
+}

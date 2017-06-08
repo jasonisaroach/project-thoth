@@ -5,10 +5,13 @@ const {dialog} = electron;
 const fs = require('fs');
 const Menu = electron.Menu;
 var mainWindow = null;
+
 app.on('ready', function() {
   console.log('Fabricator Initialized');
-  mainWindow = new BrowserWindow();
-  mainWindow.loadURL('file://'+__dirname+'/index.html');
+  mainWindow = new BrowserWindow({
+    'minWidth': 800
+  });
+  mainWindow.loadURL('file://'+__dirname+'/../index.html');
   // openFile();
   mainWindow.webContents.openDevTools();
   mainWindow.on('closed', function() {
@@ -17,6 +20,7 @@ app.on('ready', function() {
   var menu = Menu.buildFromTemplate(template);
   Menu.setApplicationMenu(menu);
 });
+
 const openFile = function () {
   var files = dialog.showOpenDialog(mainWindow, {
     properties: ['openFile'],
@@ -56,11 +60,6 @@ const template = [
         label: 'Save',
         accelerator: 'CmdOrCtrl+S',
         click() { saveFile(); }
-      },
-      {
-        label: 'Dev Tools',
-        accelerator: 'F12',
-        click() { mainWindow.webContents.openDevTools(); }
       }
     ]
   },
@@ -71,31 +70,25 @@ const template = [
         label: 'Undo',
         accelerator: 'CmdOrCtrl+Z',
         role: 'undo'
-      },
-      {
+      },{
         label: 'Redo',
         accelerator: 'Shift+CmdOrCtrl+Z',
         role: 'redo'
-      },
-      {
+      },{
         type: 'separator'
-      },
-      {
+      },{
         label: 'Cut',
         accelerator: 'CmdOrCtrl+X',
         role: 'cut'
-      },
-      {
+      },{
         label: 'Copy',
         accelerator: 'CmdOrCtrl+C',
         role: 'copy'
-      },
-      {
+      },{
         label: 'Paste',
         accelerator: 'CmdOrCtrl+V',
         role: 'paste'
-      },
-      {
+      },{
         label: 'Select All',
         accelerator: 'CmdOrCtrl+A',
         role: 'selectall'
@@ -111,36 +104,28 @@ if (process.platform == 'darwin') {
       {
         label: 'About ' + name,
         role: 'about'
-      },
-      {
+      },{
         type: 'separator'
-      },
-      {
+      },{
         label: 'Services',
         role: 'services',
         submenu: []
-      },
-      {
+      },{
         type: 'separator'
-      },
-      {
+      },{
         label: 'Hide ' + name,
         accelerator: 'Command+H',
         role: 'hide'
-      },
-      {
+      },{
         label: 'Hide Others',
         accelerator: 'Command+Alt+H',
         role: 'hideothers'
-      },
-      {
+      },{
         label: 'Show All',
         role: 'unhide'
-      },
-      {
+      },{
         type: 'separator'
-      },
-      {
+      },{
         label: 'Quit',
         accelerator: 'Command+Q',
         click() { app.quit(); }
