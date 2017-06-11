@@ -8,7 +8,7 @@ var chalk = require('chalk');
 var mainWindow = null;
 
 app.on('ready', function() {
-  console.log(chalk.cyan('Fabricator Initialized'));
+  console.log(chalk.cyan('Transmogrifier Initialized'));
   mainWindow = new BrowserWindow({
     'minWidth': 800
   });
