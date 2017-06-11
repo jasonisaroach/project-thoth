@@ -5,6 +5,9 @@ const remote = electron.remote;
 const mainProcess = remote.require('./main');
 const clipboard = remote.clipboard;
 const shell = electron.shell;
+var currentFile = null;
+var code;
+var editor;
 const $markdownView = $('.raw-markdown');
 const $htmlView = $('.rendered-html');
 const $openFileButton = $('#open-file');
@@ -12,13 +15,13 @@ const $saveFileButton = $('#save-file');
 const $copyHtmlButton = $('#copy-html');
 const $showInFileSystemButton = $('#show-in-file-system');
 const $openInDefaultEditorButton = $('#open-in-default-editor');
-var currentFile = null;
+const container = document.getElementById('container')
 
 ipc.on('file-opened', function (event, file, content) {
   currentFile = file;
+  code = content;
   $showInFileSystemButton.attr('disabled', false);
   $openInDefaultEditorButton.attr('disabled', false);
-  $markdownView.text(content);
   renderMarkdownToHtml(content);
 });
 
@@ -27,8 +30,31 @@ function renderMarkdownToHtml(markdown) {
   $htmlView.html(html);
 }
 
+if (code === undefined) {
+  mainProcess.openFile();
+}
+
+// function layout() {
+  var FULL_WIDTH = Math.floor($('.workbench').innerWidth());
+  var HALF_WIDTH = Math.floor(FULL_WIDTH) / 2;
+  // console.log(Math.floor(FULL_WIDTH))
+// }
+$( window ).on('resize', function(){
+  editor.layout()
+});
+
+amdRequire(['vs/editor/editor.main'], function() {
+	editor = monaco.editor.create(container, {
+		value: code,
+		language: 'markdown',
+    theme:"vs-dark",
+    width: 100
+	});
+  
+});
+
 $markdownView.on('keyup', function () {
-  var content = $(this).val();
+  var content = editor.getValue();
   renderMarkdownToHtml(content);
 });
 

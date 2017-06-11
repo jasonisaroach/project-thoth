@@ -12,6 +12,7 @@ app.on('ready', function() {
   mainWindow = new BrowserWindow({
     'minWidth': 800
   });
+  mainWindow.maximize()
   mainWindow.loadURL('file://'+__dirname+'/../index.html');
   // openFile();
   mainWindow.webContents.openDevTools();
