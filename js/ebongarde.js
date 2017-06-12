@@ -1,11 +1,4 @@
-/*!
- * Webflow: Front-end site library
- * @license MIT
- * Inline scripts may access the api using an async handler:
- *   var Webflow = Webflow || [];
- *   Webflow.push(readyFunction);
- */
-(function () {
+() => {
   'use strict';
 
   function __commonjs(fn, module) { return module = { exports: {} }, fn(module, module.exports), module.exports; }
@@ -28,7 +21,7 @@
   /*eslint-disable */
 
   /*!
-   * Webflow._ (aka) Underscore.js 1.6.0 (custom build)
+   * Ebongarde._ (aka) Underscore.js 1.6.0 (custom build)
    * _.each
    * _.map
    * _.find
@@ -37,7 +30,7 @@
    * _.contains
    * _.delay
    * _.defer
-   * _.throttle (webflow)
+   * _.throttle (ebongarde)
    * _.debounce
    * _.keys
    * _.has
@@ -52,7 +45,7 @@
     var _ = {};
 
     // Current version.
-    _.VERSION = '1.6.0-Webflow';
+    _.VERSION = '1.6.0-Ebongarde';
 
     // Establish the object that gets returned to break out of a loop iteration.
     var breaker = {};
@@ -379,20 +372,20 @@
 
   var require$$1 = (underscoreCustom && typeof underscoreCustom === 'object' && 'default' in underscoreCustom ? underscoreCustom['default'] : underscoreCustom);
 
-  var webflowLib = __commonjs(function (module) {
+  var ebongardeLib = __commonjs(function (module) {
   /**
-   * Webflow: Core site library
+   * Ebongarde: Core site library
    */
 
-  var Webflow = {};
+  var Ebongarde = {};
   var modules = {};
   var primary = [];
-  var secondary = window.Webflow || [];
+  var secondary = window.Ebongarde || [];
   var $ = window.jQuery;
   var $win = $(window);
   var $doc = $(document);
   var isFunction = $.isFunction;
-  var _ = Webflow._ = require$$1;
+  var _ = Ebongarde._ = require$$1;
   var tram = require$$0$1 && $.tram;
   var domready = false;
   var destroyed = false;
@@ -400,13 +393,13 @@
   tram.config.keepInherited = true;
 
   /**
-   * Webflow.define - Define a named module
+   * Ebongarde.define - Define a named module
    * @param  {string} name
    * @param  {function} factory
    * @param  {object} options
    * @return {object}
    */
-  Webflow.define = function(name, factory, options) {
+  Ebongarde.define = function(name, factory, options) {
     if (modules[name]) unbindModule(modules[name]);
     var instance = modules[name] = factory($, _, options) || {};
     bindModule(instance);
@@ -414,17 +407,17 @@
   };
 
   /**
-   * Webflow.require - Require a named module
+   * Ebongarde.require - Require a named module
    * @param  {string} name
    * @return {object}
    */
-  Webflow.require = function(name) {
+  Ebongarde.require = function(name) {
     return modules[name];
   };
 
   function bindModule(module) {
-    // If running in Webflow app, subscribe to design/preview events
-    if (Webflow.env()) {
+    // If running in Ebongarde app, subscribe to design/preview events
+    if (Ebongarde.env()) {
       isFunction(module.design) && $win.on('__wf_design', module.design);
       isFunction(module.preview) && $win.on('__wf_preview', module.preview);
     }
@@ -465,10 +458,10 @@
   }
 
   /**
-   * Webflow.push - Add a ready handler into secondary queue
+   * Ebongarde.push - Add a ready handler into secondary queue
    * @param {function} ready  Callback to invoke on domready
    */
-  Webflow.push = function(ready) {
+  Ebongarde.push = function(ready) {
     // If domready has already happened, invoke handler
     if (domready) {
       isFunction(ready) && ready();
@@ -479,18 +472,18 @@
   };
 
   /**
-   * Webflow.env - Get the state of the Webflow app
+   * Ebongarde.env - Get the state of the Ebongarde app
    * @param {string} mode [optional]
    * @return {boolean}
    */
-  Webflow.env = function(mode) {
+  Ebongarde.env = function(mode) {
     var designFlag = window.__wf_design;
     var inApp = typeof designFlag !== 'undefined';
     if (!mode) return inApp;
     if (mode === 'design') return inApp && designFlag;
     if (mode === 'preview') return inApp && !designFlag;
     if (mode === 'slug') return inApp && window.__wf_slug;
-    if (mode === 'editor') return window.WebflowEditor;
+    if (mode === 'editor') return window.EbongardeEditor;
     if (mode === 'test') return false || window.__wf_test;
     if (mode === 'frame') return window !== window.top;
   };
@@ -498,10 +491,10 @@
   // Feature detects + browser sniffs  ಠ_ಠ
   var userAgent = navigator.userAgent.toLowerCase();
   var appVersion = navigator.appVersion.toLowerCase();
-  var touch = Webflow.env.touch = ('ontouchstart' in window) || window.DocumentTouch && document instanceof window.DocumentTouch;
-  var chrome = Webflow.env.chrome = /chrome/.test(userAgent) && /Google/.test(navigator.vendor) && parseInt(appVersion.match(/chrome\/(\d+)\./)[1], 10);
-  var ios = Webflow.env.ios = /(ipod|iphone|ipad)/.test(userAgent);
-  Webflow.env.safari = /safari/.test(userAgent) && !chrome && !ios;
+  var touch = Ebongarde.env.touch = ('ontouchstart' in window) || window.DocumentTouch && document instanceof window.DocumentTouch;
+  var chrome = Ebongarde.env.chrome = /chrome/.test(userAgent) && /Google/.test(navigator.vendor) && parseInt(appVersion.match(/chrome\/(\d+)\./)[1], 10);
+  var ios = Ebongarde.env.ios = /(ipod|iphone|ipad)/.test(userAgent);
+  Ebongarde.env.safari = /safari/.test(userAgent) && !chrome && !ios;
 
   // Maintain current touch target to prevent late clicks on touch devices
   var touchTarget;
@@ -511,22 +504,22 @@
   });
 
   /**
-   * Webflow.validClick - validate click target against current touch target
+   * Ebongarde.validClick - validate click target against current touch target
    * @param  {HTMLElement} clickTarget  Element being clicked
    * @return {Boolean}  True if click target is valid (always true on non-touch)
    */
-  Webflow.validClick = touch ? function(clickTarget) {
+  Ebongarde.validClick = touch ? function(clickTarget) {
     return clickTarget === touchTarget || $.contains(clickTarget, touchTarget);
   } : function() { return true; };
 
   /**
-   * Webflow.resize, Webflow.scroll - throttled event proxies
+   * Ebongarde.resize, Ebongarde.scroll - throttled event proxies
    */
-  var resizeEvents = 'resize.webflow orientationchange.webflow load.webflow';
-  var scrollEvents = 'scroll.webflow ' + resizeEvents;
-  Webflow.resize = eventProxy($win, resizeEvents);
-  Webflow.scroll = eventProxy($win, scrollEvents);
-  Webflow.redraw = eventProxy();
+  var resizeEvents = 'resize.ebongarde orientationchange.ebongarde load.ebongarde';
+  var scrollEvents = 'scroll.ebongarde ' + resizeEvents;
+  Ebongarde.resize = eventProxy($win, resizeEvents);
+  Ebongarde.scroll = eventProxy($win, scrollEvents);
+  Ebongarde.redraw = eventProxy();
 
   // Create a proxy instance for throttled events
   function eventProxy(target, types) {
@@ -570,20 +563,20 @@
     return proxy;
   }
 
-  // Webflow.location - Wrap window.location in api
-  Webflow.location = function(url) {
+  // Ebongarde.location - Wrap window.location in api
+  Ebongarde.location = function(url) {
     window.location = url;
   };
 
-  if (Webflow.env()) {
-    // Webflow.location - Re-route location change to trigger an event
-    Webflow.location = function(url) {
+  if (Ebongarde.env()) {
+    // Ebongarde.location - Re-route location change to trigger an event
+    Ebongarde.location = function(url) {
       window.dispatchEvent(new CustomEvent('__wf_location', { detail: url }));
     };
   }
 
-  // Webflow.ready - Call primary and secondary handlers
-  Webflow.ready = function() {
+  // Ebongarde.ready - Call primary and secondary handlers
+  Ebongarde.ready = function() {
     domready = true;
 
     // Restore modules after destroy
@@ -599,7 +592,7 @@
     _.each(secondary, callReady);
 
     // Trigger resize
-    Webflow.resize.up();
+    Ebongarde.resize.up();
   };
 
   function callReady(readyFn) {
@@ -612,11 +605,11 @@
   }
 
   /**
-   * Webflow.load - Add a window load handler that will run even if load event has already happened
+   * Ebongarde.load - Add a window load handler that will run even if load event has already happened
    * @param  {function} handler
    */
   var deferLoad;
-  Webflow.load = function(handler) {
+  Ebongarde.load = function(handler) {
     deferLoad.then(handler);
   };
 
@@ -631,8 +624,8 @@
     $win.on('load', deferLoad.resolve);
   }
 
-  // Webflow.destroy - Trigger a destroy event for all modules
-  Webflow.destroy = function(options) {
+  // Ebongarde.destroy - Trigger a destroy event for all modules
+  Ebongarde.destroy = function(options) {
     options = options || {};
     destroyed = true;
     $win.triggerHandler('__wf_destroy');
@@ -646,9 +639,9 @@
     _.each(modules, unbindModule);
 
     // Clear any proxy event handlers
-    Webflow.resize.off();
-    Webflow.scroll.off();
-    Webflow.redraw.off();
+    Ebongarde.resize.off();
+    Ebongarde.scroll.off();
+    Ebongarde.redraw.off();
 
     // Clear any queued ready methods
     primary = [];
@@ -659,29 +652,29 @@
   };
 
   // Listen for domready
-  $(Webflow.ready);
+  $(Ebongarde.ready);
 
   // Listen for window.onload and resolve deferred
   bindLoad();
 
   // Export commonjs module
-  module.exports = window.Webflow = Webflow;
+  module.exports = window.Ebongarde = Ebongarde;
   });
 
-  var require$$0 = (webflowLib && typeof webflowLib === 'object' && 'default' in webflowLib ? webflowLib['default'] : webflowLib);
+  var require$$0 = (ebongardeLib && typeof ebongardeLib === 'object' && 'default' in ebongardeLib ? ebongardeLib['default'] : ebongardeLib);
 
-  var webflowBrand = __commonjs(function (module) {
+  var ebongardeBrand = __commonjs(function (module) {
   /**
-   * Webflow: Brand pages on the subdomain
+   * Ebongarde: Brand pages on the subdomain
    */
 
-  var Webflow = require$$0;
+  var Ebongarde = require$$0;
 
-  Webflow.define('brand', module.exports = function($) {
+  Ebongarde.define('brand', module.exports = function($) {
     var api = {};
     var $html = $('html');
     var $body = $('body');
-    var namespace = '.w-webflow-badge';
+    var namespace = '.e-ebongarde-badge';
     var location = window.location;
     var isPhantom = /PhantomJS/i.test(navigator.userAgent);
     var brandElement;
@@ -692,7 +685,7 @@
     api.ready = function() {
       var shouldBrand = $html.attr('data-wf-status');
       var publishedDomain = $html.attr('data-wf-domain') || '';
-      if (/\.webflow\.io$/i.test(publishedDomain) && location.hostname !== publishedDomain) {
+      if (/\.ebongarde\.io$/i.test(publishedDomain) && location.hostname !== publishedDomain) {
         shouldBrand = true;
       }
       if (shouldBrand && !isPhantom) {
@@ -703,18 +696,18 @@
     };
 
     function createBadge() {
-      var $brand = $('<a class="w-webflow-badge"></a>')
-      .attr('href', 'https://webflow.com?utm_campaign=brandjs');
+      var $brand = $('<a class="e-ebongarde-badge"></a>')
+      .attr('href', 'https://ebongarde.com?utm_campaign=brandjs');
 
       var $logoArt = $('<img>')
-      .attr('src', 'https://d1otoma47x30pg.cloudfront.net/img/webflow-badge-icon.60efbf6ec9.svg')
+      .attr('src', 'https://d1otoma47x30pg.cloudfront.net/img/ebongarde-badge-icon.60efbf6ec9.svg')
       .css({
         marginRight: '8px',
         width: '16px',
       });
 
       var $logoText = $('<img>')
-      .attr('src', 'https://d1otoma47x30pg.cloudfront.net/img/webflow-badge-text.6faa6a38cd.svg');
+      .attr('src', 'https://d1otoma47x30pg.cloudfront.net/img/ebongarde-badge-text.6faa6a38cd.svg');
 
       $brand.append($logoArt, $logoText);
       return $brand[0];
@@ -723,7 +716,7 @@
     function ensureBrand() {
       var found = $body.children(namespace);
       var match = found.length && found.get(0) === brandElement;
-      var inEditor = Webflow.env('editor');
+      var inEditor = Ebongarde.env('editor');
       if (match) {
         // Remove brand when Editor is active
         if (inEditor) {
@@ -750,7 +743,7 @@
   var xdomainMin = __commonjs(function (module) {
   /*!
    * jQuery-ajaxTransport-XDomainRequest - v1.0.3
-   * 2014-12-16 WEBFLOW - Removed UMD wrapper
+   * 2014-12-16 EBONGARDE - Removed UMD wrapper
    * https://github.com/MoonScript/jQuery-ajaxTransport-XDomainRequest
    * Copyright (c) 2014 Jason Moon (@JSONMOON)
    * @license MIT (/blob/master/LICENSE.txt)
@@ -758,14 +751,14 @@
   module.exports=function($){if($.support.cors||!$.ajaxTransport||!window.XDomainRequest){return}var httpRegEx=/^https?:\/\//i;var getOrPostRegEx=/^get|post$/i;var sameSchemeRegEx=new RegExp("^"+location.protocol,"i");$.ajaxTransport("* text html xml json",function(options,userOptions,jqXHR){if(!options.crossDomain||!options.async||!getOrPostRegEx.test(options.type)||!httpRegEx.test(options.url)||!sameSchemeRegEx.test(options.url)){return}var xdr=null;return{send:function(headers,complete){var postData="";var userType=(userOptions.dataType||"").toLowerCase();xdr=new XDomainRequest;if(/^\d+$/.test(userOptions.timeout)){xdr.timeout=userOptions.timeout}xdr.ontimeout=function(){complete(500,"timeout")};xdr.onload=function(){var allResponseHeaders="Content-Length: "+xdr.responseText.length+"\r\nContent-Type: "+xdr.contentType;var status={code:200,message:"success"};var responses={text:xdr.responseText};try{if(userType==="html"||/text\/html/i.test(xdr.contentType)){responses.html=xdr.responseText}else if(userType==="json"||userType!=="text"&&/\/json/i.test(xdr.contentType)){try{responses.json=$.parseJSON(xdr.responseText)}catch(e){status.code=500;status.message="parseerror"}}else if(userType==="xml"||userType!=="text"&&/\/xml/i.test(xdr.contentType)){var doc=new ActiveXObject("Microsoft.XMLDOM");doc.async=false;try{doc.loadXML(xdr.responseText)}catch(e){doc=undefined}if(!doc||!doc.documentElement||doc.getElementsByTagName("parsererror").length){status.code=500;status.message="parseerror";throw"Invalid XML: "+xdr.responseText}responses.xml=doc}}catch(parseMessage){throw parseMessage}finally{complete(status.code,status.message,responses,allResponseHeaders)}};xdr.onprogress=function(){};xdr.onerror=function(){complete(500,"error",{text:xdr.responseText})};if(userOptions.data){postData=$.type(userOptions.data)==="string"?userOptions.data:$.param(userOptions.data)}xdr.open(options.type,options.url);xdr.send(postData)},abort:function(){if(xdr){xdr.abort()}}}})}(window.jQuery);
   });
 
-  var webflowForms = __commonjs(function (module) {
+  var ebongardeForms = __commonjs(function (module) {
   /**
-   * Webflow: Forms
+   * Ebongarde: Forms
    */
 
-  var Webflow = require$$0;
+  var Ebongarde = require$$0;
 
-  Webflow.define('forms', module.exports = function($, _) {
+  Ebongarde.define('forms', module.exports = function($, _) {
     var api = {};
 
     // Cross-Domain AJAX for IE8
@@ -775,12 +768,12 @@
     var $forms;
     var loc = window.location;
     var retro = window.XDomainRequest && !window.atob;
-    var namespace = '.w-form';
+    var namespace = '.e-form';
     var siteId;
     var emailField = /e(-)?mail/i;
     var emailValue = /^\S+@\S+$/;
     var alert = window.alert;
-    var inApp = Webflow.env();
+    var inApp = Ebongarde.env();
     var listening;
 
     // MailChimp domains: list-manage.com + mirrors
@@ -815,9 +808,9 @@
       if (!data) data = $.data(el, namespace, { form: $el }); // data.form
 
       reset(data);
-      var wrap = $el.closest('div.w-form');
-      data.done = wrap.find('> .w-form-done');
-      data.fail = wrap.find('> .w-form-fail');
+      var wrap = $el.closest('div.e-form');
+      data.done = wrap.find('> .e-form-done');
+      data.fail = wrap.find('> .e-form-fail');
 
       var action = data.action = $el.attr('action');
       data.handler = null;
@@ -829,17 +822,17 @@
       // Custom form action
       if (action) return;
 
-      // Webflow form
-      if (siteId) { data.handler = submitWebflow; return; }
+      // Ebongarde form
+      if (siteId) { data.handler = submitEbongarde; return; }
 
-      // Alert for disconnected Webflow forms
+      // Alert for disconnected Ebongarde forms
       disconnected();
     }
 
     function addListeners() {
       listening = true;
 
-      // Handle form submission for Webflow forms
+      // Handle form submission for Ebongarde forms
       $doc.on('submit', namespace + ' form', function(evt) {
         var data = $.data(this, namespace);
         if (data.handler) {
@@ -917,15 +910,15 @@
       return status;
     }
 
-    // Submit form to Webflow
-    function submitWebflow(data) {
+    // Submit form to Ebongarde
+    function submitEbongarde(data) {
       reset(data);
 
       var form = data.form;
       var payload = {
         name: form.attr('data-name') || form.attr('name') || 'Untitled Form',
         source: loc.href,
-        test: Webflow.env(),
+        test: Ebongarde.env(),
         fields: {},
         dolphin: /pass[\s-_]?(word|code)|secret|login|credentials/i.test(form.html())
       };
@@ -942,11 +935,11 @@
       // Read site ID
       // NOTE: If this site is exported, the HTML tag must retain the data-wf-site attribute for forms to work
       if (!siteId) { afterSubmit(data); return; }
-      var url = "https://webflow.com" + '/api/v1/form/' + siteId;
+      var url = "https://ebongarde.com" + '/api/v1/form/' + siteId;
 
       // Work around same-protocol IE XDR limitation - without this IE9 and below forms won't submit
-      if (retro && url.indexOf("https://webflow.com") >= 0) {
-        url = url.replace("https://webflow.com", "http://formdata.webflow.com");
+      if (retro && url.indexOf("https://ebongarde.com") >= 0) {
+        url = url.replace("https://ebongarde.com", "http://formdata.ebongarde.com");
       }
 
       $.ajax({
@@ -1030,7 +1023,7 @@
 
       // Redirect to a success url if defined
       if (success && redirect) {
-        Webflow.location(redirect);
+        Ebongarde.location(redirect);
         return;
       }
 
@@ -1055,21 +1048,21 @@
   });
   });
 
-  var webflowLinks = __commonjs(function (module) {
+  var ebongardeLinks = __commonjs(function (module) {
   /**
-   * Webflow: Auto-select links to current page or section
+   * Ebongarde: Auto-select links to current page or section
    */
 
-  var Webflow = require$$0;
+  var Ebongarde = require$$0;
 
-  Webflow.define('links', module.exports = function($, _) {
+  Ebongarde.define('links', module.exports = function($, _) {
     var api = {};
     var $win = $(window);
     var designer;
-    var inApp = Webflow.env();
+    var inApp = Ebongarde.env();
     var location = window.location;
     var tempLink = document.createElement('a');
-    var linkCurrent = 'w--current';
+    var linkCurrent = 'e--current';
     var validHash = /^#[a-zA-Z][\w:.-]*$/;
     var indexPage = /index\.(html|php)$/;
     var dirList = /\/$/;
@@ -1085,11 +1078,11 @@
     // Private methods
 
     function init() {
-      designer = inApp && Webflow.env('design');
-      slug = Webflow.env('slug') || location.pathname || '';
+      designer = inApp && Ebongarde.env('design');
+      slug = Ebongarde.env('slug') || location.pathname || '';
 
       // Reset scroll listener, init anchors
-      Webflow.scroll.off(scroll);
+      Ebongarde.scroll.off(scroll);
       anchors = [];
 
       // Test all links for a selectable href
@@ -1100,7 +1093,7 @@
 
       // Listen for scroll if any anchors exist
       if (anchors.length) {
-        Webflow.scroll.on(scroll);
+        Ebongarde.scroll.on(scroll);
         scroll();
       }
     }
@@ -1162,14 +1155,14 @@
   });
   });
 
-  var webflowScroll = __commonjs(function (module) {
+  var ebongardeScroll = __commonjs(function (module) {
   /**
-   * Webflow: Smooth scroll
+   * Ebongarde: Smooth scroll
    */
 
-  var Webflow = require$$0;
+  var Ebongarde = require$$0;
 
-  Webflow.define('scroll', module.exports = function($) {
+  Ebongarde.define('scroll', module.exports = function($) {
     var $doc = $(document);
     var win = window;
     var loc = win.location;
@@ -1195,7 +1188,7 @@
 
       // When clicking on a link, check if it links to another part of the page
       $doc.on('click', 'a', function(e) {
-        if (Webflow.env('design')) {
+        if (Ebongarde.env('design')) {
           return;
         }
 
@@ -1236,7 +1229,7 @@
         loc.hash !== hash &&
         history && history.pushState &&
         // Navigation breaks Chrome when the protocol is `file:`.
-        !(Webflow.env.chrome && loc.protocol === 'file:')
+        !(Ebongarde.env.chrome && loc.protocol === 'file:')
       ) {
         var oldHash = history.state && history.state.hash;
         if (oldHash !== hash) {
@@ -1245,8 +1238,8 @@
       }
 
       // If a fixed header exists, offset for the height
-      var rootTag = Webflow.env('editor') ? '.w-editor-body' : 'body';
-      var header = $('header, ' + rootTag + ' > .header, ' + rootTag + ' > .w-nav:not([data-no-scroll])');
+      var rootTag = Ebongarde.env('editor') ? '.e-editor-body' : 'body';
+      var header = $('header, ' + rootTag + ' > .header, ' + rootTag + ' > .e-nav:not([data-no-scroll])');
       var offset = header.css('position') === 'fixed' ? header.outerHeight() : 0;
 
       win.setTimeout(function() {
@@ -1315,14 +1308,14 @@
   });
   });
 
-  var webflowTouch = __commonjs(function (module) {
+  var ebongardeTouch = __commonjs(function (module) {
   /**
-   * Webflow: Touch events
+   * Ebongarde: Touch events
    */
 
-  var Webflow = require$$0;
+  var Ebongarde = require$$0;
 
-  Webflow.define('touch', module.exports = function($) {
+  Ebongarde.define('touch', module.exports = function($) {
     var api = {};
     var fallback = !document.addEventListener;
     var getSelection = window.getSelection;
@@ -1454,5 +1447,5 @@
   });
   });
 
-}());
+};
 

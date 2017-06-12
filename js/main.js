@@ -1,10 +1,9 @@
-
-var chalk      = require('chalk');
-const electron = require('electron');
-const fs       = require('fs');
-const {app} = electron;
+var chalk             = require('chalk');
+const electron        = require('electron');
+const fs              = require('fs');
+const {app}           = electron;
 const {BrowserWindow} = electron;
-const {dialog} = electron;
+const {dialog}        = electron;
 const Menu = electron.Menu;
 var mainWindow = null;
 
