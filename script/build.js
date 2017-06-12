@@ -15,12 +15,18 @@ const distInfo = require('./dist-info')
 
 const isProductionBuild = process.env.NODE_ENV === 'production'
 
-console.log(`Building for ${process.env.NODE_ENV}…`)
+console.log(
+  chalk.green.bold(`ENVIRONMENT`), `${process.env.NODE_ENV}…` + '\n'
+)
 
-console.log('Removing old distribution…')
+console.log(
+  chalk.green.bold('REMOVE'), 'old distribution…' + '\n'
+)
 fs.removeSync(path.join(projectRoot, 'dist'))
 
-console.log('Copying dependencies…')
+console.log(
+  chalk.green.bold('COPY'), 'dependencies…' + '\n'
+)
 copyDependencies()
 
 console.log('Packaging emoji…')

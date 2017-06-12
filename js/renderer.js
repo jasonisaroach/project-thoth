@@ -34,11 +34,9 @@ if (code === undefined) {
   mainProcess.openFile();
 }
 
-// function layout() {
-  var FULL_WIDTH = Math.floor($('.workbench').innerWidth());
-  var HALF_WIDTH = Math.floor(FULL_WIDTH) / 2;
-  // console.log(Math.floor(FULL_WIDTH))
-// }
+var FULL_WIDTH = Math.floor($('.workbench').innerWidth());
+var HALF_WIDTH = Math.floor(FULL_WIDTH) / 2;
+
 $( window ).on('resize', function(){
   editor.layout()
 });
@@ -84,4 +82,3 @@ $showInFileSystemButton.on('click', () => {
 $openInDefaultEditorButton.on('click', () => {
 	shell.openItem(currentFile);
 });
-
