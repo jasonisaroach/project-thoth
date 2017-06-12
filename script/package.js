@@ -9,7 +9,7 @@ const distInfo = require('./dist-info')
 
 const distPath = distInfo.getDistPath()
 const productName = distInfo.getProductName()
- 
+
 if (process.platform === 'darwin') {
   packageOSX()
 } else if (process.platform === 'win32') {
