@@ -674,7 +674,7 @@
     var api = {};
     var $html = $('html');
     var $body = $('body');
-    var namespace = '.e-ebongarde-badge';
+    var namespace = '.w-ebongarde-badge';
     var location = window.location;
     var isPhantom = /PhantomJS/i.test(navigator.userAgent);
     var brandElement;
@@ -696,7 +696,7 @@
     };
 
     function createBadge() {
-      var $brand = $('<a class="e-ebongarde-badge"></a>')
+      var $brand = $('<a class="w-ebongarde-badge"></a>')
       .attr('href', 'https://ebongarde.com?utm_campaign=brandjs');
 
       var $logoArt = $('<img>')
@@ -768,7 +768,7 @@
     var $forms;
     var loc = window.location;
     var retro = window.XDomainRequest && !window.atob;
-    var namespace = '.e-form';
+    var namespace = '.w-form';
     var siteId;
     var emailField = /e(-)?mail/i;
     var emailValue = /^\S+@\S+$/;
@@ -808,9 +808,9 @@
       if (!data) data = $.data(el, namespace, { form: $el }); // data.form
 
       reset(data);
-      var wrap = $el.closest('div.e-form');
-      data.done = wrap.find('> .e-form-done');
-      data.fail = wrap.find('> .e-form-fail');
+      var wrap = $el.closest('div.w-form');
+      data.done = wrap.find('> .w-form-done');
+      data.fail = wrap.find('> .w-form-fail');
 
       var action = data.action = $el.attr('action');
       data.handler = null;
@@ -1062,7 +1062,7 @@
     var inApp = Ebongarde.env();
     var location = window.location;
     var tempLink = document.createElement('a');
-    var linkCurrent = 'e--current';
+    var linkCurrent = 'w--current';
     var validHash = /^#[a-zA-Z][\w:.-]*$/;
     var indexPage = /index\.(html|php)$/;
     var dirList = /\/$/;
@@ -1238,8 +1238,8 @@
       }
 
       // If a fixed header exists, offset for the height
-      var rootTag = Ebongarde.env('editor') ? '.e-editor-body' : 'body';
-      var header = $('header, ' + rootTag + ' > .header, ' + rootTag + ' > .e-nav:not([data-no-scroll])');
+      var rootTag = Ebongarde.env('editor') ? '.w-editor-body' : 'body';
+      var header = $('header, ' + rootTag + ' > .header, ' + rootTag + ' > .w-nav:not([data-no-scroll])');
       var offset = header.css('position') === 'fixed' ? header.outerHeight() : 0;
 
       win.setTimeout(function() {
@@ -1448,4 +1448,3 @@
   });
 
 };
-

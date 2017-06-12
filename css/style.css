@@ -103,6 +103,7 @@
   line-height: 13px;
   text-align: center;
   text-transform: uppercase;
+  transition: 200ms;
 }
 
 .btn:hover {

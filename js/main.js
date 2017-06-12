@@ -1,3 +1,5 @@
+'use strict'
+
 var chalk             = require('chalk');
 const electron        = require('electron');
 const fs              = require('fs');
@@ -7,7 +9,7 @@ const {dialog}        = electron;
 const Menu = electron.Menu;
 var mainWindow = null;
 
-app.on('ready', function() {
+electron.app.on('ready', function() {
   console.log(chalk.cyan('Transmogrifier Initialized'));
   mainWindow = new BrowserWindow({
     'minWidth': 800
