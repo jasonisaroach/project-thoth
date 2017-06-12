@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "msjsdiag.debugger-for-chrome",
+    "samverschueren.final-newline",
+    "DmitryDorofeev.empty-indent",
+    "PKief.material-icon-theme",
+    "christian-kohler.path-intellisense"
+  ]
+}
